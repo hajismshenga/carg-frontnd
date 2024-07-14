@@ -1,0 +1,23 @@
+/* receiveCargo.css */
+
+/* Specific styles for ReceiveCargo component */
+form {
+    background-color: #fff; /* White background for forms */
+}
+
+form input {
+    margin-bottom: 15px;
+}
+
+form label {
+    margin-bottom: 5px;
+}
+
+button {
+    background-color: #6f4f28; /* Medium brown color */
+    color: #fff; /* White text */
+}
+
+button:hover {
+    background-color: #5c3a1c; /* Darker brown on hover */
+}
