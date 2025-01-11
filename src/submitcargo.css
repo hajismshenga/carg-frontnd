@@ -14,10 +14,10 @@ form label {
 }
 
 button {
-    background-color: #6f4f28; /* Medium brown color */
+    background-color: #150da5; /* Medium brown color */
     color: #fff; /* White text */
 }
 
 button:hover {
-    background-color: #5c3a1c; /* Darker brown on hover */
+    background-color: #0ba230; /* Darker brown on hover */
 }

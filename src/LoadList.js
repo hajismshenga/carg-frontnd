@@ -9,7 +9,7 @@ const LoadList = () => {
     useEffect(() => {
         const fetchLoads = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/cargo/all');
+                const response = await axios.get('http://127.0.0.1:8000/api/cargo/');
                 setLoads(response.data);
             } catch (error) {
                 console.error('Error fetching load details', error);
@@ -25,10 +25,11 @@ const LoadList = () => {
         const receivedBy = prompt('Enter received by name:');
         const identificationNumber = prompt('Enter identification number:');
         try {
-            await axios.post('http://localhost:8080/api/cargo/markAsReceived', null, {
-                params: { id, receivedBy, identificationNumber }
+            await axios.post(`http://127.0.0.1:8000/api/cargo/${id}/receive/`, {
+                receivedBy,
+                identificationNumber
             });
-            const response = await axios.get('http://localhost:8080/api/cargo/all');
+            const response = await axios.get('http://127.0.0.1:8000/api/cargo/');
             setLoads(response.data);
         } catch (error) {
             console.error('Error marking cargo as received', error);
@@ -38,7 +39,7 @@ const LoadList = () => {
     const handleDeleteCargo = async (id) => {
         if (window.confirm('Are you sure you want to delete this cargo?')) {
             try {
-                await axios.delete(`http://localhost:8080/api/cargo/delete/${id}`);
+                await axios.delete(`http://127.0.0.1:8000/api/cargo/${id}/`);
                 setLoads(loads.filter(load => load.id !== id));
             } catch (error) {
                 console.error('Error deleting cargo', error);
@@ -73,20 +74,20 @@ const LoadList = () => {
                     <tbody>
                         {loads.map((load) => (
                             <tr key={load.id}>
-                                <td>{load.loadNumber}</td>
-                                <td>{load.senderName}</td>
-                                <td>{load.senderPhone}</td>
-                                <td>{load.paymentAmount}</td>
-                                <td>{load.loadType}</td>
-                                <td>{load.recipientName}</td>
-                                <td>{load.recipientPhone}</td>
-                                <td>{load.isReceived ? 'Received' : 'Sent'}</td>
-                                <td>{load.receivedBy || '-'}</td>
-                                <td>{load.identificationNumber || '-'}</td>
-                                <td>{load.submittedAt ? new Date(load.submittedAt).toLocaleString() : '-'}</td>
-                                <td>{load.receivedAt ? new Date(load.receivedAt).toLocaleString() : '-'}</td>
+                                <td>{load.load_number}</td>
+                                <td>{load.sender_name}</td>
+                                <td>{load.sender_phone}</td>
+                                <td>{load.payment_amount}</td>
+                                <td>{load.load_type}</td>
+                                <td>{load.recipient_name}</td>
+                                <td>{load.recipient_phone}</td>
+                                <td>{load.is_received ? 'Received' : 'Sent'}</td>
+                                <td>{load.received_by || '-'}</td>
+                                <td>{load.identification_number || '-'}</td>
+                                <td>{load.submitted_at ? new Date(load.submitted_at).toLocaleString() : '-'}</td>
+                                <td>{load.received_at ? new Date(load.received_at).toLocaleString() : '-'}</td>
                                 <td>
-                                    {!load.isReceived && (
+                                    {!load.is_received && (
                                         <button onClick={() => handleMarkAsReceived(load.id)}>
                                             Mark as Received
                                         </button>

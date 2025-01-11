@@ -21,7 +21,7 @@ const ReceiveCargo = () => {
     const handleReceive = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:8080/api/cargo/receive', null, {
+            await axios.post('http://127.0.0.1:8000/api/cargo/receive', null, {
                 params: {
                     id: details.id,
                     receivedBy: details.receivedBy,

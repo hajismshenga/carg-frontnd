@@ -24,7 +24,7 @@ const SubmitCargo = () => {
         };
 
         try {
-            await axios.post('http://localhost:8080/api/cargo/submit', cargo);
+            await axios.post('http://127.0.0.1:8000/api/cargo/submit/', cargo);
             alert('Cargo submitted successfully!');
         } catch (error) {
             console.error('Error submitting cargo', error);
